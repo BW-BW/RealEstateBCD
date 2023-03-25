@@ -4,6 +4,8 @@
  */
 package realestatebcd;
 
+import guifrontend.Login_jframe;
+
 /**
  *
  * @author Brian
@@ -14,7 +16,7 @@ public class RealEstateBCD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new Login_jframe().setVisible(true);
     }
     
 }

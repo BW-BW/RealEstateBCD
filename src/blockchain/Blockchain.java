@@ -20,7 +20,7 @@ import java.util.LinkedList;
  */
 public class Blockchain {
     //create a human readable file
-    private static final String ChainFile = "master/chain.bin";
+    private static final String CHAIN_FILE = "master/chain.bin";
 
     private static LinkedList<Block> DB = new LinkedList<>();
 
@@ -42,7 +42,7 @@ public class Blockchain {
 
     private static void persist() {
         try (
-            FileOutputStream fout = new FileOutputStream(ChainFile);
+            FileOutputStream fout = new FileOutputStream(CHAIN_FILE);
             ObjectOutputStream out = new ObjectOutputStream(fout);) {
             out.writeObject(DB);
             System.out.println(">>> Master file updated!");
@@ -53,7 +53,7 @@ public class Blockchain {
 
     public static LinkedList<Block> get() {
         try (
-            FileInputStream fin = new FileInputStream(ChainFile);
+            FileInputStream fin = new FileInputStream(CHAIN_FILE);
             ObjectInputStream in = new ObjectInputStream(fin);) {
             return (LinkedList<Block>) in.readObject();
         } catch (Exception e) {

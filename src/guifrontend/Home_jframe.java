@@ -151,7 +151,7 @@ public class Home_jframe extends javax.swing.JFrame {
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new Add_jframe().setVisible(true);
+        new Add_jframe(username).setVisible(true);
     }//GEN-LAST:event_addbtnActionPerformed
 
     private void viewbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewbtnActionPerformed

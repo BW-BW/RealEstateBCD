@@ -4,6 +4,7 @@
  */
 package blockchain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,11 @@ import java.util.List;
  *
  * @author Brian
  */
-public class PropertyData {
+public class PropertyData implements Serializable{
     private final int SIZE = 8;
     //MerkleRoot is a hash value according to dataLst
     //  Note: we will do that later on
-    private String merkleRoot = "";
+    private String merkleRoot = "helloworld";
 
 
     //You may want to choose any data collection mechanism
@@ -24,24 +25,24 @@ public class PropertyData {
 
     //constructor
     public PropertyData() {
-            dataLst = new ArrayList<>( SIZE );
+        dataLst = new ArrayList<>( SIZE );
     }
 
     public void setMerkleTree(String root) {
-            this.merkleRoot = root;
+        this.merkleRoot = root;
     }
 
     //add-operation
     public void add( String tranx ) {
-            dataLst.add(tranx);
+        dataLst.add(tranx);
     }
 
     @Override
     public String toString() {
-            return "Transaction ["+ dataLst +"]";
+        return "Transaction ["+ dataLst +"]";
     } 
 
     public List<String> getDataLst() {
-            return dataLst;
+        return dataLst;
     }
 }

@@ -4,8 +4,27 @@
  */
 package guifrontend;
 
+import blockchain.Block;
+import blockchain.Blockchain;
+import blockchain.PropertyData;
+import cryptography.Asymmetric;
+import digitalsignature.SignatureSign;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
+import java.util.List;
+import merkletree.MerkleTree;
 
 /**
  *
@@ -13,6 +32,35 @@ import java.awt.Toolkit;
  */
 public class Add_jframe extends javax.swing.JFrame {
     static String username;
+    
+    private KeyPair getKeyPair(String data) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        // Read Public Key.
+        File filePublicKey = new File("KeyPair/"+ data +"/PublicKey");
+        FileInputStream fis = new FileInputStream("KeyPair/" + data + "/PublicKey");
+        byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
+        fis.read(encodedPublicKey);
+        fis.close();
+
+        // Read Private Key.
+        File filePrivateKey = new File("KeyPair/" + data + "/PrivateKey");
+        fis = new FileInputStream("KeyPair/" + data + "/PrivateKey");
+        byte[] encodedPrivateKey = new byte[(int) filePrivateKey.length()];
+        fis.read(encodedPrivateKey);
+        fis.close();
+
+        // Generate KeyPair.
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(
+                encodedPublicKey);
+        PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
+
+        PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(
+                encodedPrivateKey);
+        PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
+
+        return new KeyPair(publicKey, privateKey);
+    }
+    
     /**
      * Creates new form Home_jframe
      */
@@ -41,7 +89,7 @@ public class Add_jframe extends javax.swing.JFrame {
         sizelbl = new java.awt.TextField();
         sellerlbl = new java.awt.TextField();
         pricelbl = new java.awt.TextField();
-        locationlbl1 = new java.awt.TextField();
+        locationlbl = new java.awt.TextField();
         logout_btn = new javax.swing.JButton();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
@@ -50,28 +98,24 @@ public class Add_jframe extends javax.swing.JFrame {
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
         label7 = new java.awt.Label();
+        btnClear = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 450));
         setPreferredSize(new java.awt.Dimension(600, 450));
 
         buyerlbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        buyerlbl.setText("textField1");
 
         typelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        typelbl.setText("textField1");
 
         sizelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        sizelbl.setText("textField1");
 
         sellerlbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        sellerlbl.setText("textField1");
 
         pricelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        pricelbl.setText("textField1");
 
-        locationlbl1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        locationlbl1.setText("textField1");
+        locationlbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         logout_btn.setText("Go Back Home");
         logout_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +138,20 @@ public class Add_jframe extends javax.swing.JFrame {
 
         label7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label7.setText("Enter Transaction");
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add Data");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,14 +180,20 @@ public class Add_jframe extends javax.swing.JFrame {
                             .addComponent(buyerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(211, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(locationlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addComponent(locationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 211, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(207, 207, 207)
                 .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,17 +221,16 @@ public class Add_jframe extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(locationlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
+                    .addComponent(locationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -178,6 +241,97 @@ public class Add_jframe extends javax.swing.JFrame {
         this.dispose();
         new Home_jframe(username).setVisible(true);
     }//GEN-LAST:event_logout_btnActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        buyerlbl.setText(null);
+        sellerlbl.setText(null);
+        typelbl.setText(null);
+        sizelbl.setText(null);
+        pricelbl.setText(null);
+        locationlbl.setText(null);
+        
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if ( !new File("master").exists() ) {
+            System.err.println( "> creating Blockchain binary !" );
+            new File("master").mkdir();
+            Blockchain.genesis();
+        }
+        else {
+            String buyerName = buyerlbl.getText();
+            String sellerName = sellerlbl.getText();
+            String propType = typelbl.getText();
+            String propSize = sizelbl.getText();
+            String propPrice = pricelbl.getText(); 
+            String propLoc = locationlbl.getText();
+
+            //Asymmetric encryption
+            KeyPair keyPair = null;
+            try {
+                keyPair = getKeyPair(username);
+            } catch (Exception e2) {
+                System.out.println("Key Pair Not Found");
+
+            }
+            PublicKey pubKey = keyPair.getPublic();
+
+            Asymmetric crypto = new Asymmetric("RSA");
+
+            //store all the value into an array
+            List<String> propertyList = new ArrayList<>();
+
+            try {
+                propertyList.add(crypto.encrypt(buyerName, pubKey));
+                propertyList.add(crypto.encrypt(sellerName, pubKey));
+                propertyList.add(propType);
+                propertyList.add(propSize);
+                propertyList.add(propPrice);
+                propertyList.add(crypto.encrypt(propLoc, pubKey));
+                propertyList.add(username);
+
+            } catch (Exception e2) {
+                System.out.println("Cannot Add Data");
+            }
+
+            //develop string to encrypt specific data
+            PrivateKey privKey = keyPair.getPrivate();
+            
+            //DIGITAL SIGNATURE
+            SignatureSign signature = new SignatureSign(username);
+
+            String encrypt = null;
+            try {
+                encrypt = signature.sign(username);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            btnAdd.setActionCommand(encrypt);
+
+           //add encrypted data in blockchain
+            PropertyData property = new PropertyData();
+            for(String i : propertyList)
+            {
+                property.add(i);
+            }
+            property.add(encrypt);
+
+            //implement merkle root
+            MerkleTree mt = MerkleTree.getInstance(propertyList);
+            mt.build();
+            property.setMerkleTree(mt.getRoot());
+
+            //add to blockchain
+            Block b1 = new Block(Blockchain.get().getLast().getHeader().getCurrentHash(), Blockchain.get().getLast().getHeader().getIndex());
+
+            b1.setTranx(property);
+            Blockchain.nextBlock(b1);
+            //distribute the block
+            Blockchain.distribute();
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +372,8 @@ public class Add_jframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
     private java.awt.TextField buyerlbl;
     private java.awt.Label label1;
     private java.awt.Label label2;
@@ -226,7 +382,7 @@ public class Add_jframe extends javax.swing.JFrame {
     private java.awt.Label label5;
     private java.awt.Label label6;
     private java.awt.Label label7;
-    private java.awt.TextField locationlbl1;
+    private java.awt.TextField locationlbl;
     private javax.swing.JButton logout_btn;
     private java.awt.TextField pricelbl;
     private java.awt.TextField sellerlbl;
