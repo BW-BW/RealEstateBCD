@@ -4,8 +4,11 @@
  */
 package guifrontend;
 
+import digitalsignature.KeyGenerator;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -17,8 +20,9 @@ public class Home_jframe extends javax.swing.JFrame {
      * Creates new form Home_jframe
      */
     public Home_jframe() {//if run file
-        System.out.println("Please run Project");
+        System.out.println("Please run Project Correctly");
     }
+    
     public Home_jframe(String username) {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -40,6 +44,9 @@ public class Home_jframe extends javax.swing.JFrame {
         viewbtn = new javax.swing.JButton();
         hi_lbl = new javax.swing.JLabel();
         logout_btn = new javax.swing.JButton();
+        btnGenerateKey = new javax.swing.JButton();
+        hi_lbl1 = new javax.swing.JLabel();
+        hi_lbl2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 450));
@@ -69,36 +76,73 @@ public class Home_jframe extends javax.swing.JFrame {
             }
         });
 
+        btnGenerateKey.setText("Generate Key");
+        btnGenerateKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateKeyActionPerformed(evt);
+            }
+        });
+
+        hi_lbl1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        hi_lbl1.setText("Hello, If this is your first time logging in,");
+
+        hi_lbl2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        hi_lbl2.setText("please generate key");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(hi_lbl2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(hi_lbl1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(btnGenerateKey, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewbtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addbtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(hi_lbl)))
+                .addContainerGap(177, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
-                .addComponent(hi_lbl)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addComponent(viewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(viewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(hi_lbl)
-                        .addGap(90, 90, 90)))
-                .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)))
+                .addComponent(viewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(hi_lbl1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hi_lbl2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerateKey, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -113,14 +157,22 @@ public class Home_jframe extends javax.swing.JFrame {
     private void viewbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewbtnActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        //        new View_jframe(ID).setVisible(true);
+        new View_jframe(username).setVisible(true);
     }//GEN-LAST:event_viewbtnActionPerformed
 
     private void logout_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_btnActionPerformed
         // TODO add your handling code here:
+        this.username="";
         this.dispose();
         new Login_jframe().setVisible(true);
     }//GEN-LAST:event_logout_btnActionPerformed
+
+    private void btnGenerateKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateKeyActionPerformed
+        // TODO add your handling code here:
+        KeyGenerator newKey = new KeyGenerator();
+        newKey.create(username);
+        JOptionPane.showMessageDialog(null,"Key Generated!");
+    }//GEN-LAST:event_btnGenerateKeyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +211,10 @@ public class Home_jframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbtn;
+    private javax.swing.JButton btnGenerateKey;
     private javax.swing.JLabel hi_lbl;
+    private javax.swing.JLabel hi_lbl1;
+    private javax.swing.JLabel hi_lbl2;
     private javax.swing.JButton logout_btn;
     private javax.swing.JButton viewbtn;
     // End of variables declaration//GEN-END:variables

@@ -24,7 +24,7 @@ public class Login {
     final private String Username;
     final private String Password;
 
-    private Path filePath = Paths.get("Account.txt");
+    private Path filePath = Paths.get("Accounts.txt");
 
     public Login(String username, String password) {
         this.Username = username;

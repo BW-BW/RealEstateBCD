@@ -243,7 +243,8 @@ public class Register_jframe extends javax.swing.JFrame {
             }
             else if(new Register(username, password).registerAccount()){
                 this.dispose();
-                new Home_jframe(username).setVisible(true);
+                JOptionPane.showMessageDialog(null,"New Account Created");
+                new Login_jframe().setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(null,"Wrong Username or Password, Please re-enter");
@@ -255,6 +256,8 @@ public class Register_jframe extends javax.swing.JFrame {
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new Login_jframe().setVisible(true);
     }//GEN-LAST:event_backbtnActionPerformed
 
     private void confirmpasstxtboxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmpasstxtboxFocusGained

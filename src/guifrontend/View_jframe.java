@@ -16,11 +16,12 @@ public class View_jframe extends javax.swing.JFrame {
     /**
      * Creates new form Home_jframe
      */
-//    public View_jframe() {//if run file
-//        System.out.println("Please run Project");
-//    }
-    public View_jframe() {
-//        String username="a";
+    
+    public View_jframe() {//if run file
+        System.out.println("Please run Project Correctly");
+    }
+    
+    public View_jframe(String username) {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2,dim.height/2-this.getSize().height/2);//make jframe center
