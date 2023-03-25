@@ -5,8 +5,11 @@
 package guifrontend;
 
 import guibackend.Login;
+import guibackend.Register;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,8 +48,6 @@ public class Register_jframe extends javax.swing.JFrame {
         backbtn = new javax.swing.JButton();
         confirmpasstxtbox = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
-        chkboxPass1 = new javax.swing.JCheckBox();
-        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,11 @@ public class Register_jframe extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 passtxtboxFocusLost(evt);
+            }
+        });
+        passtxtbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passtxtboxActionPerformed(evt);
             }
         });
 
@@ -120,22 +126,16 @@ public class Register_jframe extends javax.swing.JFrame {
                 confirmpasstxtboxFocusLost(evt);
             }
         });
+        confirmpasstxtbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmpasstxtboxActionPerformed(evt);
+            }
+        });
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Confirm Password");
-
-        chkboxPass1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chkboxPass1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkboxPass1ActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("Show Confirm Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,10 +151,6 @@ public class Register_jframe extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(confirmpasstxtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(chkboxPass1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEnterUsername)
@@ -173,23 +169,19 @@ public class Register_jframe extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEnterUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passtxtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkboxPass)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(confirmpasstxtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkboxPass1)
-                    .addComponent(jLabel11))
-                .addGap(28, 28, 28)
+                    .addComponent(chkboxPass)
+                    .addComponent(jLabel10))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(registerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -231,27 +223,33 @@ public class Register_jframe extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (chkboxPass.isSelected()) {
             passtxtbox.setEchoChar((char)0);
+            confirmpasstxtbox.setEchoChar((char)0);
         } else {
             passtxtbox.setEchoChar('*');
+            confirmpasstxtbox.setEchoChar('*');
         }
     }//GEN-LAST:event_chkboxPassActionPerformed
 
     private void registerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerbtnActionPerformed
-        // TODO add your handling code here:
-        String username=txtEnterUsername.getText();
-        String password=String.valueOf(passtxtbox.getPassword());
-        String confirmpass=String.valueOf(confirmpasstxtbox.getPassword());
-        if(password.equals(confirmpass)){
-            JOptionPane.showMessageDialog(null,"Passwords Different, Please re-enter");
-        } else if (username.equals("")||password.equals("")||confirmpass.equals("")){
-            JOptionPane.showMessageDialog(null,"Please Enter all inputs");
-        }
-        else if(new Login(username, password).login()){
-            this.dispose();
-            new Home_jframe(username).setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Wrong Username or Password, Please re-enter");
+        try {
+            // TODO add your handling code here:
+            String username=txtEnterUsername.getText();
+            String password=String.valueOf(passtxtbox.getPassword());
+            String confirmpass=String.valueOf(confirmpasstxtbox.getPassword());
+            if(!password.equals(confirmpass)){
+                JOptionPane.showMessageDialog(null,"Passwords Different, Please re-enter");
+            } else if (username.equals("")||password.equals("")||confirmpass.equals("")){
+                JOptionPane.showMessageDialog(null,"Please Enter all inputs");
+            }
+            else if(new Register(username, password).registerAccount()){
+                this.dispose();
+                new Home_jframe(username).setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Wrong Username or Password, Please re-enter");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Register_jframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_registerbtnActionPerformed
 
@@ -261,15 +259,25 @@ public class Register_jframe extends javax.swing.JFrame {
 
     private void confirmpasstxtboxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmpasstxtboxFocusGained
         // TODO add your handling code here:
+        if("EnterPassword".equals(String.valueOf(confirmpasstxtbox.getPassword()))){
+            confirmpasstxtbox.setText("");
+        }          
     }//GEN-LAST:event_confirmpasstxtboxFocusGained
 
     private void confirmpasstxtboxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmpasstxtboxFocusLost
         // TODO add your handling code here:
+        if(passtxtbox.getPassword().length==0){
+            passtxtbox.setText("EnterPassword");
+        }
     }//GEN-LAST:event_confirmpasstxtboxFocusLost
 
-    private void chkboxPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkboxPass1ActionPerformed
+    private void confirmpasstxtboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmpasstxtboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chkboxPass1ActionPerformed
+    }//GEN-LAST:event_confirmpasstxtboxActionPerformed
+
+    private void passtxtboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passtxtboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passtxtboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,10 +348,8 @@ public class Register_jframe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backbtn;
     private javax.swing.JCheckBox chkboxPass;
-    private javax.swing.JCheckBox chkboxPass1;
     private javax.swing.JPasswordField confirmpasstxtbox;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -36,7 +36,7 @@ public class Login_jframe extends javax.swing.JFrame {
     private void initComponents() {
 
         txtEnterUsername = new javax.swing.JTextField();
-        txpEnterPass = new javax.swing.JPasswordField();
+        txtEnterPass = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         chkboxPass = new javax.swing.JCheckBox();
@@ -58,15 +58,15 @@ public class Login_jframe extends javax.swing.JFrame {
             }
         });
 
-        txpEnterPass.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txpEnterPass.setText("EnterPassword");
-        txpEnterPass.setBorder(null);
-        txpEnterPass.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtEnterPass.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtEnterPass.setText("EnterPassword");
+        txtEnterPass.setBorder(null);
+        txtEnterPass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txpEnterPassFocusGained(evt);
+                txtEnterPassFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txpEnterPassFocusLost(evt);
+                txtEnterPassFocusLost(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class Login_jframe extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtEnterUsername)
-                        .addComponent(txpEnterPass, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEnterPass, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(chkboxPass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -141,7 +141,7 @@ public class Login_jframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txpEnterPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEnterPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkboxPass)
@@ -171,33 +171,33 @@ public class Login_jframe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEnterUsernameFocusLost
 
-    private void txpEnterPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txpEnterPassFocusGained
+    private void txtEnterPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnterPassFocusGained
         // TODO add your handling code here:
-        if("EnterPassword".equals(String.valueOf(txpEnterPass.getPassword()))){
-            txpEnterPass.setText("");
+        if("EnterPassword".equals(String.valueOf(txtEnterPass.getPassword()))){
+            txtEnterPass.setText("");
         }
-    }//GEN-LAST:event_txpEnterPassFocusGained
+    }//GEN-LAST:event_txtEnterPassFocusGained
 
-    private void txpEnterPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txpEnterPassFocusLost
+    private void txtEnterPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnterPassFocusLost
         // TODO add your handling code here:
-        if(txpEnterPass.getPassword().length==0){
-            txpEnterPass.setText("EnterPassword");
+        if(txtEnterPass.getPassword().length==0){
+            txtEnterPass.setText("EnterPassword");
         }
-    }//GEN-LAST:event_txpEnterPassFocusLost
+    }//GEN-LAST:event_txtEnterPassFocusLost
 
     private void chkboxPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkboxPassActionPerformed
         // TODO add your handling code here:
         if (chkboxPass.isSelected()) {
-            txpEnterPass.setEchoChar((char)0);
+            txtEnterPass.setEchoChar((char)0);
         } else {
-            txpEnterPass.setEchoChar('*');
+            txtEnterPass.setEchoChar('*');
         }
     }//GEN-LAST:event_chkboxPassActionPerformed
 
     private void loginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbtnActionPerformed
         // TODO add your handling code here:
         String username=txtEnterUsername.getText();
-        String password=String.valueOf(txpEnterPass.getPassword());
+        String password=String.valueOf(txtEnterPass.getPassword());
         if(new Login(username, password).login()){
             this.dispose();
             new Home_jframe(username).setVisible(true);
@@ -258,7 +258,7 @@ public class Login_jframe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton loginbtn;
     private javax.swing.JButton registerbtn;
-    private javax.swing.JPasswordField txpEnterPass;
+    private javax.swing.JPasswordField txtEnterPass;
     private javax.swing.JTextField txtEnterUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,8 +39,8 @@ public class Block implements Serializable{
             return record;
     }
 
-    public void setTranx(PropertyData medList) {
-            this.record = medList;
+    public void setTranx(PropertyData realEstateList) {
+            this.record = realEstateList;
     }
 
     // nested class for composition relations

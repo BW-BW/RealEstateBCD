@@ -37,7 +37,7 @@
                   <Component id="jLabel6" min="-2" pref="110" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="txtEnterUsername" max="32767" attributes="0"/>
-                      <Component id="txpEnterPass" min="-2" pref="196" max="-2" attributes="0"/>
+                      <Component id="txtEnterPass" min="-2" pref="196" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="chkboxPass" min="-2" max="-2" attributes="0"/>
@@ -61,7 +61,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="txpEnterPass" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtEnterPass" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="chkboxPass" min="-2" max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEnterUsernameFocusLost"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txpEnterPass">
+    <Component class="javax.swing.JPasswordField" name="txtEnterPass">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="14" style="0"/>
@@ -108,8 +108,8 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txpEnterPassFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txpEnterPassFocusLost"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEnterPassFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEnterPassFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
