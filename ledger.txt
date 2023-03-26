@@ -72,5 +72,27 @@
         "GKRvxT5ktMLQa8u3zpoGvxeZe+H3xquGGzqnqs4DhdM7UgXzY/sj7TjLZaEbzmcuLzmQ8owotiQx3heTUPtHSeqgp7HkmnyMc4JRAkR9FtA7mh2pqLvVOZjoKL9B2LlMLnjM/+tc4zj5k3D4/wPb1wR+IOTarpBkYDXuWY/J3wQ\u003d"
       ]
     }
+  },
+  {
+    "header": {
+      "index": 4,
+      "currentHash": "659a120cf1fbb9c01bbfd30eb643dabab148488c7f42a3d35d6e9d9371dff204",
+      "previousHash": "9919569aeacdc6042d41dfb85021409783f3a1542f72d82dad170397547dab0f",
+      "timestamp": 1679806877163
+    },
+    "record": {
+      "SIZE": 8,
+      "merkleRoot": "c15034d169947dbff87962d8f20ce056fe18a50fbe188baa2b4dec3f0a20e808",
+      "dataLst": [
+        "rAM3HjgBwkqvBbXtK771/WeI6Gn9rGeO3N6UYlOeKfdoEjcNPRU0TW+86uxZxK3lj+rumi8Qo6dn9LfBEoYmsNjjJfUxMc8nPpGTI3FCrWIGUYUynJoVNAEBwz3sPTWV9UjwKtyUDRmrSrCxr0JXXTN7N5GfA66Rd+FZQvguGAA\u003d",
+        "PAO6jsuxyewD9UZMknrs2YrpmOKfimcwPX07oFZURO+aR13Y9C/FpnePf5LgXBUqhNp+3ixgh1k1V8ptDNBdvaOgv4ef7oMRJBsEhJTxTkjM9fZawe96+8eLyvVWUxtryUPctlkEd+bH6R3dQLUlGsLAflELYiAI42iessM7OcQ\u003d",
+        "Residential",
+        "500",
+        "$30000",
+        "HKENCYDwI5Rgom2u29m2gNz1c0D6eAvbkFQDJaoQitgHrMJasWU9xQJUzsBUBMxs53SuWlTsYWvFBBjhRiZnsC4S0xZ5658CSju4y8a6bf4CFtoiwNZbB1dpuDvUHo6aThviCECb9eCs0x/Z6gVV8sIoxzciBPHkerBTvm8OcrA\u003d",
+        "john wick",
+        "A3U7uFbprpxeOogs/tjt7SXJoQ1nyOuOwSRqtuEoYjqlmwcm5/S3CrsWLU+NA2p2HvkHCy920utOlURsZUWj6m+NZexwO+ahxmcVfvshmbJN3guqSlXED3uuXjUiamUGMz//IpFIOPTwW4dLUI/+GRmw1mgGo+LClbkPQXI/vfo\u003d"
+      ]
+    }
   }
 ]
