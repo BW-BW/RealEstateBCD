@@ -7,6 +7,7 @@ package guifrontend;
 import digitalsignature.KeyGenerator;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.JOptionPane;
 
 
@@ -166,9 +167,15 @@ public class Home_jframe extends javax.swing.JFrame {
 
     private void btnGenerateKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateKeyActionPerformed
         // TODO add your handling code here:
-        KeyGenerator newKey = new KeyGenerator();
-        newKey.create(username);
-        JOptionPane.showMessageDialog(null,"Key Generated!");
+        if (new File("KeyPair/"+username).exists() ) {
+            System.err.println( "> Key Already Exist!" );
+            JOptionPane.showMessageDialog(null,"Key Already Exist!");
+        }
+        else{
+            KeyGenerator newKey = new KeyGenerator();
+            newKey.create(username);
+            JOptionPane.showMessageDialog(null,"Key Generated!");
+        }
     }//GEN-LAST:event_btnGenerateKeyActionPerformed
     
     //CHECK if key pair exist, dont need to create key pair.
