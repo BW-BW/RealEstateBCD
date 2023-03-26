@@ -157,6 +157,7 @@ public class View_jframe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("View Property Transaction");
+        setBackground(new java.awt.Color(255, 255, 204));
         setMinimumSize(new java.awt.Dimension(600, 500));
         setPreferredSize(new java.awt.Dimension(600, 500));
 
