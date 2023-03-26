@@ -45,6 +45,7 @@ public class Login_jframe extends javax.swing.JFrame {
         registerbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         txtEnterUsername.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtEnterUsername.setText("Enter Username");

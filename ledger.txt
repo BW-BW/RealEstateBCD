@@ -50,5 +50,27 @@
         "GKRvxT5ktMLQa8u3zpoGvxeZe+H3xquGGzqnqs4DhdM7UgXzY/sj7TjLZaEbzmcuLzmQ8owotiQx3heTUPtHSeqgp7HkmnyMc4JRAkR9FtA7mh2pqLvVOZjoKL9B2LlMLnjM/+tc4zj5k3D4/wPb1wR+IOTarpBkYDXuWY/J3wQ\u003d"
       ]
     }
+  },
+  {
+    "header": {
+      "index": 3,
+      "currentHash": "9919569aeacdc6042d41dfb85021409783f3a1542f72d82dad170397547dab0f",
+      "previousHash": "50e9424679cfc5af6290c895ddf36399e728121bbc8a0fd99ac7f256d833f87f",
+      "timestamp": 1679804699849
+    },
+    "record": {
+      "SIZE": 8,
+      "merkleRoot": "11d444c8a0fe2f96d47ccf1a2b59786da36fd4a8c33f4339ff3a8401fc33bf6f",
+      "dataLst": [
+        "N7ovD+rhJuVlQ+vfUoMHVIkL+LVk0qTwNH6kquQhiIKCH2aB7Zpai5l7crsvY+FmnNn9NkULFMLqnpS6luiwaU7HiXcPoET7sSX7mlJtybo8BemWHVXo39n89Hbl0ROdHlAKCKb3z6Q+ySkyCyiHbvrhU2O5tTWnu9Wj/nixUy8\u003d",
+        "YGv0Q5esEmQojINQO9wtmyBz2Uq+Kzp1C6GPzKDhJyCXUOp66qcCSrjWtcUHqP+YUMW2ntgVDbtznSVLvANmR5xXPR/CtBTBlmRB3l/Akoj8l6ATy3i9+EwDAUbrA/u1joqaPu+aZ9Ob/gAxuJdgbnCTwQfJl518X4lXp9zFllw\u003d",
+        "Residential",
+        "100 x 50",
+        "$ 1M",
+        "WTt7TRhBUw2ZFLTrBP5rnT6RWBQ0xHv4U5se+lnGC/qdecQtkRQQ+MRp4TWnfIO9FUnE2pm4h27pEPgtZJT3KGtx76KhKEbb/5za457Qirm9jlFJAJ4nExT2vvbh4UKBHhAYqCBrJfckfelOw7fp7xk3xvvkeejPt50kyts0XB4\u003d",
+        "brian",
+        "GKRvxT5ktMLQa8u3zpoGvxeZe+H3xquGGzqnqs4DhdM7UgXzY/sj7TjLZaEbzmcuLzmQ8owotiQx3heTUPtHSeqgp7HkmnyMc4JRAkR9FtA7mh2pqLvVOZjoKL9B2LlMLnjM/+tc4zj5k3D4/wPb1wR+IOTarpBkYDXuWY/J3wQ\u003d"
+      ]
+    }
   }
 ]
