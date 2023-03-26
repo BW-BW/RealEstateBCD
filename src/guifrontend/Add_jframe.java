@@ -61,6 +61,78 @@ public class Add_jframe extends javax.swing.JFrame {
         return new KeyPair(publicKey, privateKey);
     }
     
+    private void addBlockchain() {
+        String buyerName = buyerlbl.getText();
+        String sellerName = sellerlbl.getText();
+        String propType = typelbl.getText();
+        String propSize = sizelbl.getText();
+        String propPrice = pricelbl.getText(); 
+        String propLoc = locationlbl.getText();
+
+        //Asymmetric encryption
+        KeyPair keyPair = null;
+        try {
+            keyPair = getKeyPair(username);
+        } catch (Exception e2) {
+            System.out.println("Key Pair Not Found");
+
+        }
+        PublicKey pubKey = keyPair.getPublic();
+
+        Asymmetric crypto = new Asymmetric("RSA");
+
+        //store all the value into an array
+        List<String> propertyList = new ArrayList<>();
+
+        try {
+            propertyList.add(crypto.encrypt(buyerName, pubKey));
+            propertyList.add(crypto.encrypt(sellerName, pubKey));
+            propertyList.add(propType);
+            propertyList.add(propSize);
+            propertyList.add(propPrice);
+            propertyList.add(crypto.encrypt(propLoc, pubKey));
+            propertyList.add(username);
+
+        } catch (Exception e2) {
+            System.out.println("Cannot Add Data");
+        }
+
+        //develop string to encrypt specific data
+        PrivateKey privKey = keyPair.getPrivate();
+
+        //DIGITAL SIGNATURE
+        SignatureSign signature = new SignatureSign(username);
+
+        String encrypt = null;
+        try {
+            encrypt = signature.sign(username);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        btnAdd.setActionCommand(encrypt);
+
+       //add encrypted data in blockchain
+        PropertyData property = new PropertyData();
+        for(String i : propertyList)
+        {
+            property.add(i);
+        }
+        property.add(encrypt);
+
+        //implement merkle root
+        MerkleTree mt = MerkleTree.getInstance(propertyList);
+        mt.build();
+        property.setMerkleTree(mt.getRoot());
+
+        //add to blockchain
+        Block b1 = new Block(Blockchain.get().getLast().getHeader().getCurrentHash(), Blockchain.get().getLast().getHeader().getIndex());
+
+        b1.setData(property);
+        Blockchain.nextBlock(b1);
+        //distribute the block
+        Blockchain.distribute();
+    }
+    
     /**
      * Creates new form Home_jframe
      */
@@ -171,17 +243,13 @@ public class Add_jframe extends javax.swing.JFrame {
                             .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sellerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sizelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buyerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(211, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(locationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 211, Short.MAX_VALUE))))
+                    .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sellerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sizelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buyerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(locationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(207, 207, 207)
                 .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,7 +257,7 @@ public class Add_jframe extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,77 +327,10 @@ public class Add_jframe extends javax.swing.JFrame {
             System.err.println( "> creating Blockchain binary !" );
             new File("master").mkdir();
             Blockchain.genesis();
+            addBlockchain();
         }
         else {
-            String buyerName = buyerlbl.getText();
-            String sellerName = sellerlbl.getText();
-            String propType = typelbl.getText();
-            String propSize = sizelbl.getText();
-            String propPrice = pricelbl.getText(); 
-            String propLoc = locationlbl.getText();
-
-            //Asymmetric encryption
-            KeyPair keyPair = null;
-            try {
-                keyPair = getKeyPair(username);
-            } catch (Exception e2) {
-                System.out.println("Key Pair Not Found");
-
-            }
-            PublicKey pubKey = keyPair.getPublic();
-
-            Asymmetric crypto = new Asymmetric("RSA");
-
-            //store all the value into an array
-            List<String> propertyList = new ArrayList<>();
-
-            try {
-                propertyList.add(crypto.encrypt(buyerName, pubKey));
-                propertyList.add(crypto.encrypt(sellerName, pubKey));
-                propertyList.add(propType);
-                propertyList.add(propSize);
-                propertyList.add(propPrice);
-                propertyList.add(crypto.encrypt(propLoc, pubKey));
-                propertyList.add(username);
-
-            } catch (Exception e2) {
-                System.out.println("Cannot Add Data");
-            }
-
-            //develop string to encrypt specific data
-            PrivateKey privKey = keyPair.getPrivate();
-            
-            //DIGITAL SIGNATURE
-            SignatureSign signature = new SignatureSign(username);
-
-            String encrypt = null;
-            try {
-                encrypt = signature.sign(username);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-            btnAdd.setActionCommand(encrypt);
-
-           //add encrypted data in blockchain
-            PropertyData property = new PropertyData();
-            for(String i : propertyList)
-            {
-                property.add(i);
-            }
-            property.add(encrypt);
-
-            //implement merkle root
-            MerkleTree mt = MerkleTree.getInstance(propertyList);
-            mt.build();
-            property.setMerkleTree(mt.getRoot());
-
-            //add to blockchain
-            Block b1 = new Block(Blockchain.get().getLast().getHeader().getCurrentHash(), Blockchain.get().getLast().getHeader().getIndex());
-
-            b1.setTranx(property);
-            Blockchain.nextBlock(b1);
-            //distribute the block
-            Blockchain.distribute();
+            addBlockchain();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

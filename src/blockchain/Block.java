@@ -39,7 +39,7 @@ public class Block implements Serializable{
             return record;
     }
 
-    public void setTranx(PropertyData realEstateList) {
+    public void setData(PropertyData realEstateList) {
             this.record = realEstateList;
     }
 
