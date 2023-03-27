@@ -4,7 +4,7 @@
  */
 package guifrontend;
 
-import digitalsignature.KeyGenerator;
+import cryptography.KeyGenerator;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;

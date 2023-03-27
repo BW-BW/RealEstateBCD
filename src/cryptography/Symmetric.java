@@ -21,6 +21,8 @@ public class Symmetric extends Cryptography{
     public String encrypt(String data, Key key) throws Exception {
         String cipherText = null;
         cipher.init(Cipher.ENCRYPT_MODE, key);
+        
+        //encrypt
         byte[] cipherBytes = cipher.doFinal(data.getBytes());
         cipherText = Base64.getEncoder().encodeToString(cipherBytes);
         return cipherText;
@@ -30,6 +32,8 @@ public class Symmetric extends Cryptography{
     public String decrypt(String cipherText, Key key) throws Exception {
         cipher.init(Cipher.DECRYPT_MODE, key);
         byte[] cipherBytes = Base64.getDecoder().decode(cipherText);
+        
+        //decrypt
         byte[] dataBytes = cipher.doFinal(cipherBytes);
         return new String(dataBytes);
     }

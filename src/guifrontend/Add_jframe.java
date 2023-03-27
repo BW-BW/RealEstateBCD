@@ -67,7 +67,6 @@ public class Add_jframe extends javax.swing.JFrame {
         String buyerName = buyerlbl.getText();
         String sellerName = sellerlbl.getText();
         String propType = (String) cmbtype.getSelectedItem();
-//        String propSize = sizelbl.getText();
 
         String D=String.valueOf(cmbDate.getSelectedItem());
         int Month=cmbMonth.getSelectedIndex();
@@ -84,7 +83,6 @@ public class Add_jframe extends javax.swing.JFrame {
             keyPair = getKeyPair(username);
         } catch (Exception e) {
             System.out.println("Key Pair Not Found");
-
         }
         PublicKey pubKey = keyPair.getPublic();
 
@@ -105,9 +103,6 @@ public class Add_jframe extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Cannot Add Data");
         }
-
-        //develop string to encrypt specific data
-//        PrivateKey privKey = keyPair.getPrivate();
 
         //DIGITAL SIGNATURE
         SignatureSign signature = new SignatureSign(username);
