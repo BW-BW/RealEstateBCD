@@ -94,5 +94,27 @@
         "A3U7uFbprpxeOogs/tjt7SXJoQ1nyOuOwSRqtuEoYjqlmwcm5/S3CrsWLU+NA2p2HvkHCy920utOlURsZUWj6m+NZexwO+ahxmcVfvshmbJN3guqSlXED3uuXjUiamUGMz//IpFIOPTwW4dLUI/+GRmw1mgGo+LClbkPQXI/vfo\u003d"
       ]
     }
+  },
+  {
+    "header": {
+      "index": 5,
+      "currentHash": "96238f94e4c6f76ad50510860cee8e95af5c9cd3c85211e999e2cd2bdaddb36e",
+      "previousHash": "659a120cf1fbb9c01bbfd30eb643dabab148488c7f42a3d35d6e9d9371dff204",
+      "timestamp": 1679853869990
+    },
+    "record": {
+      "SIZE": 8,
+      "merkleRoot": "c4749b7ecba0da26b7a489e503378f7b35e593ffd966bb40d9e6f66e59a52cf3",
+      "dataLst": [
+        "dQsYBIq9YXsevU1w5F3hY/QzbM6HFUKUb/MllljaPFOzh35yXo+NGjsAapc2hDA0AgWFRQHQ77IS9q+pmdlDkOjL8ojRB8ylaxlBcbkkMmZFySvCtDtTDdcdoeTpGTFHwJDRTj8vyxDItbyks9yXAHuEuTSRgFX5v6lSy1/7KOI\u003d",
+        "FtvJKMr6SAP2TCFw/LqpX95vYw/pFRp+/IiPdS8ciwRjHbp9oZq0zrWl/U5P/KTIM3YeCf0yi8Vpelj6yHPRaszOrHuEpivfStVhOpN5rLGlsBCe5Z8MaSs8muQk5p/7oskBTjo9M7OJPkUt+MMYtrPpWDs8ytGvnh2180vqfXA\u003d",
+        "Industrial",
+        "1000",
+        "$90000",
+        "FHM+8G+e4SemHRnQXNIHvT7Z/NNbflG/bqrgoirqoM478dQCVHtm1m7Tm6jbM8+EK7DkMtHjJg/Y+xsIypcbKmzUjVcjAyZSsYGTnAZbihFPYvJgAbOONhXLOMEcfEJyK6A86uDfznBCT4yAJ0skqCZGJznbwsYIm/a6YL+SloM\u003d",
+        "brian",
+        "GKRvxT5ktMLQa8u3zpoGvxeZe+H3xquGGzqnqs4DhdM7UgXzY/sj7TjLZaEbzmcuLzmQ8owotiQx3heTUPtHSeqgp7HkmnyMc4JRAkR9FtA7mh2pqLvVOZjoKL9B2LlMLnjM/+tc4zj5k3D4/wPb1wR+IOTarpBkYDXuWY/J3wQ\u003d"
+      ]
+    }
   }
 ]

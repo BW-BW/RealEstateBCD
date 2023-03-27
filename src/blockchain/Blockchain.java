@@ -19,12 +19,12 @@ import java.util.LinkedList;
  * @author Brian
  */
 public class Blockchain {
-    //create a human readable file
+    //create the blockhain file - unreadable by people
     private static final String CHAIN_FILE = "master/chain.bin";
 
     private static LinkedList<Block> DB = new LinkedList<>();
 
-    //create a machine readable file
+    //create ledger file for user to read
     private static final String LEDGER_FILE = "ledger.txt";
 
     public static void genesis() {

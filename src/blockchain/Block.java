@@ -43,7 +43,7 @@ public class Block implements Serializable{
             this.record = realEstateList;
     }
 
-    // nested class for composition relations
+    //composition relations between block and header
     public class Header implements Serializable{
 
             private int index;
@@ -100,9 +100,6 @@ public class Block implements Serializable{
             return "Block [header="+ this.header +", transaction="+ this.record +"]";
     }
 
-    /**
-     * Converting the Block object into byte[]
-     */
     private byte[] getBytes() {
             try(
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();

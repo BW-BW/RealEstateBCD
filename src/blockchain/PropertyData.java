@@ -15,12 +15,7 @@ import java.util.List;
 public class PropertyData implements Serializable{
     private final int SIZE = 8;
     //MerkleRoot is a hash value according to dataLst
-    //  Note: we will do that later on
     private String merkleRoot = "helloworld";
-
-
-    //You may want to choose any data collection mechanism
-    // 	Simply, array or collection APIs
     private List<String> dataLst;
 
     //constructor
