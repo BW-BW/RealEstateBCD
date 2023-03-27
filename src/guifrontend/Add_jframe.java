@@ -22,8 +22,10 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import merkletree.MerkleTree;
 
 /**
@@ -65,7 +67,14 @@ public class Add_jframe extends javax.swing.JFrame {
         String buyerName = buyerlbl.getText();
         String sellerName = sellerlbl.getText();
         String propType = (String) cmbtype.getSelectedItem();
-        String propSize = sizelbl.getText();
+//        String propSize = sizelbl.getText();
+
+        String D=String.valueOf(cmbDate.getSelectedItem());
+        int Month=cmbMonth.getSelectedIndex();
+        String M=String.valueOf(Month+1);
+        String Y=String.valueOf(cmbYear.getSelectedItem());
+        String app_date= D+"/"+M+"/"+Y; //get data from combo box to form a date and combine it
+        
         String propPrice = pricelbl.getText(); 
         String propLoc = locationlbl.getText();
 
@@ -88,7 +97,7 @@ public class Add_jframe extends javax.swing.JFrame {
             propertyList.add(crypto.encrypt(buyerName, pubKey));
             propertyList.add(crypto.encrypt(sellerName, pubKey));
             propertyList.add(propType);
-            propertyList.add(propSize);
+            propertyList.add(crypto.encrypt(app_date, pubKey));
             propertyList.add(propPrice);
             propertyList.add(crypto.encrypt(propLoc, pubKey));
             propertyList.add(username);
@@ -145,6 +154,24 @@ public class Add_jframe extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2,dim.height/2-this.getSize().height/2);//make jframe center
         this.username=username;
+        
+        ArrayList<Integer> day = new ArrayList<>();//to set the day and year combo box
+        for(int i = 1; i <= 31; i++) {
+            day.add(i);
+        }
+        Integer[]dayArray=day.toArray(new Integer[0]);
+        DefaultComboBoxModel days = new DefaultComboBoxModel(dayArray);
+        cmbDate.setModel(days);
+
+        ArrayList<Integer> year = new ArrayList<>();
+        LocalDate current_date = LocalDate.now();
+        int current_year=current_date.getYear();
+        for(int i = current_year; i <= 2025; i++) {
+            year.add(i);
+        }
+        Integer[]yearArray=year.toArray(new Integer[0]);
+        DefaultComboBoxModel years = new DefaultComboBoxModel(yearArray);
+        cmbYear.setModel(years);
     }
 
     /**
@@ -157,7 +184,6 @@ public class Add_jframe extends javax.swing.JFrame {
     private void initComponents() {
 
         buyerlbl = new java.awt.TextField();
-        sizelbl = new java.awt.TextField();
         sellerlbl = new java.awt.TextField();
         pricelbl = new java.awt.TextField();
         locationlbl = new java.awt.TextField();
@@ -172,14 +198,15 @@ public class Add_jframe extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         cmbtype = new javax.swing.JComboBox<>();
+        cmbMonth = new javax.swing.JComboBox<>();
+        cmbYear = new javax.swing.JComboBox<>();
+        cmbDate = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Property Transaction");
         setMinimumSize(new java.awt.Dimension(600, 450));
 
         buyerlbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
-        sizelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         sellerlbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -198,7 +225,7 @@ public class Add_jframe extends javax.swing.JFrame {
 
         label2.setText("Property Type:");
 
-        label3.setText("Property Size:");
+        label3.setText("Date of Transaction:");
 
         label4.setText("Seller Name:");
 
@@ -230,6 +257,19 @@ public class Add_jframe extends javax.swing.JFrame {
             }
         });
 
+        cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        cmbMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMonthActionPerformed(evt);
+            }
+        });
+
+        cmbYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbYearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,37 +277,48 @@ public class Add_jframe extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
+                                .addGap(30, 30, 30)
+                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(label3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pricelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sellerlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sizelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buyerlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(locationlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbtype, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(pricelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sellerlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buyerlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(locationlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbtype, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -289,12 +340,15 @@ public class Add_jframe extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sizelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +376,7 @@ public class Add_jframe extends javax.swing.JFrame {
         buyerlbl.setText(null);
         sellerlbl.setText(null);
 //        typelbl.setText(null);
-        sizelbl.setText(null);
+//        sizelbl.setText(null);
         pricelbl.setText(null);
         locationlbl.setText(null);
         
@@ -345,6 +399,56 @@ public class Add_jframe extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        (String) cmbtype.getSelectedItem();
     }//GEN-LAST:event_cmbtypeActionPerformed
+
+    private void cmbMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMonthActionPerformed
+        // TODO add your handling code here:
+        int Month=cmbMonth.getSelectedIndex();//to change the date depending on the month
+        int[] one = { 0, 2, 4, 6, 7, 9, 11};
+        int[] thirtee = { 3, 5, 8, 10};
+        boolean foundOne = false;
+        boolean foundThre=false;
+        for (int n : one) {
+            if (n == Month) {
+                foundOne = true;
+                break;
+            }
+        }
+        for (int n : thirtee) {
+            if (n == Month) {
+                foundThre = true;
+                break;
+            }
+        }
+        cmbDate.removeAllItems();
+        if(foundOne == true){
+            String [] date = new String[31];
+            for(int i = 0; i < 31; i++) {
+                date[i] = String.valueOf(i + 1);
+            }
+            DefaultComboBoxModel days = new DefaultComboBoxModel(date);
+            cmbDate.setModel(days);
+        }
+        else if (foundThre == true){
+            String [] date = new String[30];
+            for(int i = 0; i < 30; i++) {
+                date[i] = String.valueOf(i + 1);
+            }
+            DefaultComboBoxModel days = new DefaultComboBoxModel(date);
+            cmbDate.setModel(days);
+        }
+        else{
+            String [] date = new String[28];
+            for(int i = 0; i < 28; i++) {
+                date[i] = String.valueOf(i + 1);
+            }
+            DefaultComboBoxModel days = new DefaultComboBoxModel(date);
+            cmbDate.setModel(days);
+        }
+    }//GEN-LAST:event_cmbMonthActionPerformed
+
+    private void cmbYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbYearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbYearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,7 +492,9 @@ public class Add_jframe extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
     private java.awt.TextField buyerlbl;
-    private javax.swing.JComboBox<String> cmbVacc;
+    private javax.swing.JComboBox<String> cmbDate;
+    private javax.swing.JComboBox<String> cmbMonth;
+    private javax.swing.JComboBox<String> cmbYear;
     private javax.swing.JComboBox<String> cmbtype;
     private java.awt.Label label1;
     private java.awt.Label label2;
@@ -401,6 +507,5 @@ public class Add_jframe extends javax.swing.JFrame {
     private javax.swing.JButton logout_btn;
     private java.awt.TextField pricelbl;
     private java.awt.TextField sellerlbl;
-    private java.awt.TextField sizelbl;
     // End of variables declaration//GEN-END:variables
 }

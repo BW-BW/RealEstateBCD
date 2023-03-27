@@ -116,5 +116,27 @@
         "GKRvxT5ktMLQa8u3zpoGvxeZe+H3xquGGzqnqs4DhdM7UgXzY/sj7TjLZaEbzmcuLzmQ8owotiQx3heTUPtHSeqgp7HkmnyMc4JRAkR9FtA7mh2pqLvVOZjoKL9B2LlMLnjM/+tc4zj5k3D4/wPb1wR+IOTarpBkYDXuWY/J3wQ\u003d"
       ]
     }
+  },
+  {
+    "header": {
+      "index": 6,
+      "currentHash": "99a3b6425740d53ae17f38f0dd1da318cbb4aa9705eec6de9a19972e3b5f87c3",
+      "previousHash": "96238f94e4c6f76ad50510860cee8e95af5c9cd3c85211e999e2cd2bdaddb36e",
+      "timestamp": 1679877745053
+    },
+    "record": {
+      "SIZE": 8,
+      "merkleRoot": "c88916cac535639615ee174122a5937854e7a5bc52d2cb24cec00ac09c566316",
+      "dataLst": [
+        "Fmcme8brzhZkK/hWprByNr1fJBcTb4RvAU0PRi+fOH9nSoOAbUezzM3QrYYq3Chzd1Qqz8Y9dZ+OaSeiC2Rm+5oCevMiwOzPko9HG8BwfrTIOKMpQbu3sIOi9W1wBC47tg2rrkmFh9oifWnlwW7KpW0PY0ZSfPzKsbN6eIaRMLk\u003d",
+        "E990MhCWZmKxA0fT5KL4MuvpbjxQuVxzMR/l3ir+k6sICdbBcrhg889YEJkG/AlD1CpZcDgq50VrPrB6+i58W6MRXFXiLvr9BC78+xPbt3ow4mYQloi6QjJrNpPt8cqTOFeQYMuuL4DETGB5w83gLaC4hISm/6OUx4jCnD/Nnk8\u003d",
+        "Residential",
+        "ZVyyiNyAI8jy5OUts3agQq9UrbvNK3UnyH9ofE7zSiRFpDMYyQR2kWSxxNVk7E5p9/TxSkOzA4J4209hl4L3uhS4k4Jmiz6W8OYXF9DE8pO8TFeIjM1Py9yaSbpGBBK8GFMt+ZLtMoAWV8vAkMWQn8+j1wYUHXUbp/UrIv2fNfc\u003d",
+        "123123",
+        "fOmNbz26sgH3LqRFd1Tck+rE0cfZJLE9RR+n6emvsio8oRsvlVBLeaJwQ1TI3NZWCSDocnMJm+HMIXvseDiGDAc820I5YTPTKAFYxP+GkaxFMHo8egSHHMsTRkCFKkZB9UJ7wpRsZMfnpH8f1mV3leWi1IM6PsL2k+gxs23WZlc\u003d",
+        "brian",
+        "GKRvxT5ktMLQa8u3zpoGvxeZe+H3xquGGzqnqs4DhdM7UgXzY/sj7TjLZaEbzmcuLzmQ8owotiQx3heTUPtHSeqgp7HkmnyMc4JRAkR9FtA7mh2pqLvVOZjoKL9B2LlMLnjM/+tc4zj5k3D4/wPb1wR+IOTarpBkYDXuWY/J3wQ\u003d"
+      ]
+    }
   }
 ]

@@ -43,23 +43,17 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="127" max="32767" attributes="0"/>
-                                      <Component id="label8" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="134" max="32767" attributes="0"/>
-                                      <Component id="label6" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="label8" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label6" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="label5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -74,23 +68,22 @@
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="pricelbl" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="typelbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="sellerlbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="datelbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="buyerlbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="authorlbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="locationlbl" min="-2" pref="175" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="label7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pricelbl" min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="typelbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="sellerlbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="sizelbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="buyerlbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="authorlbl" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="locationlbl" min="-2" pref="175" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="label7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -120,7 +113,7 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="typelbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="sizelbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="datelbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="label1" min="-2" max="-2" attributes="0"/>
@@ -197,7 +190,7 @@
     </Component>
     <Component class="java.awt.Label" name="label3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Property Size:"/>
+        <Property name="text" type="java.lang.String" value="Date of Transaction:"/>
       </Properties>
     </Component>
     <Component class="java.awt.Label" name="label4">
@@ -273,7 +266,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="java.awt.TextField" name="sizelbl">
+    <Component class="java.awt.TextField" name="datelbl">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

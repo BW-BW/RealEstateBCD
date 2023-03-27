@@ -77,6 +77,7 @@ public class View_jframe extends javax.swing.JFrame {
         String buyer = "";
         String seller = "";
         String propLocation = "";
+        String date="";
 
         KeyPair keyPair = null;
         try {
@@ -92,6 +93,7 @@ public class View_jframe extends javax.swing.JFrame {
         try {
             buyer = crypto.decrypt(Blocks.get(0), privateKey);
             seller = crypto.decrypt(Blocks.get(1), privateKey);
+            date = crypto.decrypt(Blocks.get(3), privateKey);
             propLocation = crypto.decrypt(Blocks.get(5), privateKey);
         } catch (Exception e) {
                 e.printStackTrace();
@@ -100,7 +102,7 @@ public class View_jframe extends javax.swing.JFrame {
         buyerlbl.setText(buyer);
         sellerlbl.setText(seller);
         typelbl.setText(Blocks.get(2));
-        sizelbl.setText(Blocks.get(3));
+        datelbl.setText(date);
         pricelbl.setText(Blocks.get(4));
         locationlbl.setText(propLocation);
         authorlbl.setText(Blocks.get(6));
@@ -147,7 +149,7 @@ public class View_jframe extends javax.swing.JFrame {
         verifyBtn = new javax.swing.JButton();
         buyerlbl = new java.awt.TextField();
         typelbl = new java.awt.TextField();
-        sizelbl = new java.awt.TextField();
+        datelbl = new java.awt.TextField();
         sellerlbl = new java.awt.TextField();
         pricelbl = new java.awt.TextField();
         authorlbl = new java.awt.TextField();
@@ -172,7 +174,7 @@ public class View_jframe extends javax.swing.JFrame {
 
         label2.setText("Property Type:");
 
-        label3.setText("Property Size:");
+        label3.setText("Date of Transaction:");
 
         label4.setText("Seller Name:");
 
@@ -214,8 +216,8 @@ public class View_jframe extends javax.swing.JFrame {
         typelbl.setEditable(false);
         typelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        sizelbl.setEditable(false);
-        sizelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        datelbl.setEditable(false);
+        datelbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         sellerlbl.setEditable(false);
         sellerlbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -248,19 +250,15 @@ public class View_jframe extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap(127, Short.MAX_VALUE)
-                                        .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap(134, Short.MAX_VALUE)
-                                        .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(49, 49, 49))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(label8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(49, 49, 49))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(40, 40, 40))
@@ -270,20 +268,19 @@ public class View_jframe extends javax.swing.JFrame {
                                             .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(31, 31, 31)))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sellerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sizelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buyerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(authorlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(locationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)))
+                                        .addGap(31, 31, 31)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pricelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(typelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sellerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buyerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(authorlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(locationlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nextBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,7 +305,7 @@ public class View_jframe extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(typelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(sizelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(datelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -377,7 +374,7 @@ public class View_jframe extends javax.swing.JFrame {
             buyerlbl.setText(null);
             sellerlbl.setText(null);
             typelbl.setText(null);
-            sizelbl.setText(null);
+            datelbl.setText(null);
             pricelbl.setText(null);
             locationlbl.setText(null);
             authorlbl.setText(null);
@@ -440,6 +437,7 @@ public class View_jframe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextField authorlbl;
     private java.awt.TextField buyerlbl;
+    private java.awt.TextField datelbl;
     private javax.swing.JTextArea digsigta;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
@@ -457,7 +455,6 @@ public class View_jframe extends javax.swing.JFrame {
     private javax.swing.JButton previousBtn;
     private java.awt.TextField pricelbl;
     private java.awt.TextField sellerlbl;
-    private java.awt.TextField sizelbl;
     private java.awt.TextField typelbl;
     private javax.swing.JButton verifyBtn;
     // End of variables declaration//GEN-END:variables
