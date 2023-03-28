@@ -71,30 +71,27 @@ public class SignatureSign {
         }
     }
 
-    // Sign Function
     public String sign(String data) throws Exception {
     	try {
-    		sig.initSign(keyPair.getPrivate());
-    		sig.update(data.getBytes());			
-		} catch (Exception e) {
-			System.out.println("KeyPair Not Found");
-		}
+            sig.initSign(keyPair.getPrivate());
+            sig.update(data.getBytes());			
+            } catch (Exception e) {
+                    System.out.println("KeyPair Not Found");
+            }
         return Base64.getEncoder().encodeToString(sig.sign());
     }
 
-    // Verify
     public boolean verify(String data, String signature){
     	boolean access = false;
     	try {
-    		sig.initVerify(keyPair.getPublic());
-    		sig.update(data.getBytes());
-    		sig.verify(Base64.getDecoder().decode(signature));
-    		access = true;
-			
-		} catch (Exception e) {
-			System.out.println("Not Found");
-		}
-    	
+            sig.initVerify(keyPair.getPublic());
+            sig.update(data.getBytes());
+            sig.verify(Base64.getDecoder().decode(signature));
+            access = true;
+
+            } catch (Exception e) {
+                    System.out.println("Not Found");
+            }
     	return access;
     }    
 }
